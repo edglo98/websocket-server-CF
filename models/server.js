@@ -34,7 +34,7 @@ export class Server {
       .then((os) => {
         const networkInterfaces = os.networkInterfaces()
         const ipv4 = networkInterfaces.en0.find(network => network.family === 'IPv4')
-        
+
         return ipv4.address
       })
   }
