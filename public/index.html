@@ -4,10 +4,33 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="./socket.io/socket.io.js"></script>
   <script defer src="./js/socket-client.js"></script>
   <title>Websocket</title>
 </head>
 <body>
   <h1>Websocket</h1>
+
+  <section>
+    <span >
+      Server status: 
+      <b id='lbl-status'>
+        Offline
+      </b>
+    </span>
+  </section>
+
+  <section>
+    <form id="form-server">
+      <div>
+        <input name='msg' type="text">
+      </div>
+      <div>
+        <button>
+          Enviar
+        </button>
+      </div>
+    </form>
+  </section>
 </body>
 </html>
