@@ -10,4 +10,30 @@ export const socketController = socket => {
 
     callback(next)
   })
+
+  socket.on('attend-ticket', ({ desktop }, callback) => {
+    if (!desktop) {
+      const res = {
+        ok: false,
+        msg: 'El escritorio es obligatorio'
+      }
+      return callback(res)
+    }
+
+    const ticket = ticketControl.takeTicket(desktop)
+
+    if (!ticket) {
+      const res = {
+        ok: false,
+        msg: 'No hay tickets pendientes'
+      }
+      return callback(res)
+    }
+
+    const res = {
+      ok: true,
+      ticket
+    }
+    return callback(res)
+  })
 }
