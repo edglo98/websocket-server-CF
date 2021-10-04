@@ -1,6 +1,6 @@
 import { TicketControl } from '../../models/ticketControl.js'
 
-const ticketContro = new TicketControl()
+const ticketControl = new TicketControl()
 
 export const socketController = socket => {
   socket.on('send-menssage', (payload, callback) => {
