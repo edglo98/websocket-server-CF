@@ -16,7 +16,14 @@ const $lblEscritorio4 = $('#lblEscritorio4')
 const socket = io()
 
 socket.on('last-four', payload => {
+  const audio = new Audio('./audio/new-ticket.mp3')
+  audio.play()
+
   const [t1, t2, t3, t4] = payload
+
+  const utterance = new SpeechSynthesisUtterance(`Ticket # ${t1.number}`)
+  utterance.lang = 'es-MX'
+  speechSynthesis.speak(utterance)
 
   if (t1) {
     $lblTicket1.innerHTML = 'Ticket ' + t1.number
