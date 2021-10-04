@@ -1,3 +1,7 @@
+import { TicketControl } from '../../models/ticketControl.js'
+
+const ticketContro = new TicketControl()
+
 export const socketController = socket => {
   socket.on('send-menssage', (payload, callback) => {
     const feedback = { id: 12836231 }
