@@ -4,9 +4,12 @@ const ticketControl = new TicketControl()
 
 export const socketController = socket => {
   socket.emit('last-ticket', ticketControl.last)
+  socket.emit('last-four', ticketControl.last4)
+  socket.emit('await-tickets', ticketControl.tickets)
 
   socket.on('get-ticket', (payload, callback) => {
     const next = ticketControl.next()
+    socket.broadcast.emit('await-tickets', ticketControl.tickets)
 
     callback(next)
   })
@@ -21,6 +24,10 @@ export const socketController = socket => {
     }
 
     const ticket = ticketControl.takeTicket(desktop)
+
+    socket.broadcast.emit('last-four', ticketControl.last4)
+    socket.emit('await-tickets', ticketControl.tickets)
+    socket.broadcast.emit('await-tickets', ticketControl.tickets)
 
     if (!ticket) {
       const res = {
